@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.abhinav.turnout">
+    package="turnout.example.abhinav.turnout">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"></application>
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".Profile.LoginActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".Timeline.PostActivity" />
+        <activity android:name=".Profile.RegisterActivity" />
+        <activity android:name=".Timeline.MainActivity" />
+        <activity android:name=".Event.EventListActivity" />
+        <activity android:name=".Utility.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Profile.SetupActivity" />
+        <activity android:name=".Timeline.HomeSingleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="buzzer.com"
+                    android:scheme="http" />
+                <data android:pathPattern="." />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Timeline.LikedActivity" />
+        <activity android:name=".Profile.ProfileActivity" />
+        <activity android:name=".College.CollegeListActivity" />
+        <activity android:name=".College.CollegeListActivity2" />
+        <activity android:name=".Comment.CommentListActivity" />
+        <activity android:name=".Profile.ProfileSeeActivity" />
+        <activity android:name=".Event.EventTimeline" />
+        <activity android:name=".Profile.ProfilePhotoSelector" />
+
+        <service android:name=".FirebaseMessaging.MyFirebaseInstance">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".FirebaseMessaging.MyFirebaseMessaging">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".College.CollegePhotoSelector" />
+        <activity android:name=".Utility.AboutActivity" />
+        <activity android:name=".Event.AddEventActivity"></activity>
+
+    </application>
+
 
 </manifest>

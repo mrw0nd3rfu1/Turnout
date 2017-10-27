@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/app_bar_top"
-    tools:context="com.tech.abhinav.buzzer.Timeline.PostActivity">
+  >
 
     <ImageButton
         android:id="@+id/imageSelect"

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/app_bar_top"
+    tools:context="com.tech.abhinav.buzzer.Timeline.PostActivity">
+
+    <ImageButton
+        android:id="@+id/imageSelect"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:srcCompat="@mipmap/add_btn" />
+
+    <TextView
+        android:id="@+id/singleHomeEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageSelect"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/input_outline"
+        android:ems="10"
+        android:hint="Event Name"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+    android:id="@+id/singleHomeEventDate"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/singleHomeEvent"
+        android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/input_outline"
+    android:ems="10"
+    android:hint="Event Date"
+    android:inputType="textPersonName"
+    android:padding="10dp"
+        android:singleLine="true"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/postWrite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/singleHomeEventDate"
+        android:layout_alignStart="@+id/singleHomeEventDate"
+        android:layout_below="@+id/singleHomeEventDate"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/input_outline"
+        android:ems="10"
+        android:hint="Write Post"
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
+
+    <Button
+        android:id="@+id/submitPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorPrimary"
+        android:text="Submit Post" />
+
+
+</RelativeLayout>
