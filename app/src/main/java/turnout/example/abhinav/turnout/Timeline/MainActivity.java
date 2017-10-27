@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth;
     private Query orderData;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private AdView mAdView;
     private boolean isUserClickedBackButton = false;
     private CollapsingToolbarLayout collapsingToolbarLayout = null;
     private CircleImageView mProfileImage;
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final Animation mHideButton = AnimationUtils.loadAnimation(MainActivity.this , R.anim.hide_button);
         final Animation mShowLayout = AnimationUtils.loadAnimation(MainActivity.this , R.anim.show_layout);
         final Animation mHideLayout = AnimationUtils.loadAnimation(MainActivity.this , R.anim.hide_layout);
-        final View mShadowView = (View) findViewById(R.id.shadowView);
+        //final View mShadowView = (View) findViewById(R.id.shadowView);
 
         mtoolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(mtoolbar);
@@ -187,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mPostLayout.startAnimation(mHideLayout);
                     mEventLayout.startAnimation(mHideLayout);
                     mfab.startAnimation(mHideButton);
-                    mShadowView.setVisibility(View.GONE);
+                   // mShadowView.setVisibility(View.GONE);
                 }
                 else
                 {
@@ -196,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mPostLayout.startAnimation(mShowLayout);
                     mEventLayout.startAnimation(mShowLayout);
                     mfab.startAnimation(mShowButton);
-                    mShadowView.setVisibility(View.VISIBLE);
+                   // mShadowView.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -209,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mPostLayout.startAnimation(mHideLayout);
                 mEventLayout.startAnimation(mHideLayout);
                 mfab.startAnimation(mHideButton);
-                mShadowView.setVisibility(View.GONE);
+             //   mShadowView.setVisibility(View.GONE);
                 Intent postIntent = new Intent(MainActivity.this, EventListActivity.class);
                 postIntent.putExtra("colgId",clgID);
                 postIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -224,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mPostLayout.startAnimation(mHideLayout);
                 mEventLayout.startAnimation(mHideLayout);
                 mfab.startAnimation(mHideButton);
-                mShadowView.setVisibility(View.GONE);
+              //  mShadowView.setVisibility(View.GONE);
                 Intent postIntent = new Intent(MainActivity.this, AddEventActivity.class);
                 postIntent.putExtra("colgId",clgID);
                 postIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -254,47 +253,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onStart() {
         super.onStart();
-        mAdView = (AdView)findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-        mAdView.loadAd(adRequest);
-        mAuth.addAuthStateListener(mAuthListener);
         mDatabaseUsers.child(mAuth.getCurrentUser().getUid()).child("online").setValue("true");
 
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-            mDatabaseUsers.child(mAuth.getCurrentUser().getUid()).child("online").setValue(ServerValue.TIMESTAMP);
-        }
-
-    }
-
-    @Override
-    public void onPause() {
-        if (mAdView != null) {
-            mAdView.pause();
-        }
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (mAdView != null) {
-            mAdView.resume();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        if (mAdView != null) {
-            mAdView.destroy();
-        }
-        super.onDestroy();
-    }
 
 
     @Override

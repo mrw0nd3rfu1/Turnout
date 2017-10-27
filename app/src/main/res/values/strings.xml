@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Buzzer</string>
+    <string name="app_name">Turnout</string>
 
 
     <string name="send_me_an_sms">Send me an Sms</string>

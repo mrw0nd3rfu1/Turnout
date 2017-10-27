@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.tech.abhinav.buzzer.Timeline.MainActivity"
     android:id="@+id/drawer_layout"
     >
 
@@ -21,6 +20,31 @@
         android:layout_above="@+id/adView"
         android:fitsSystemWindows="true"
         android:orientation="vertical">
+
+        <View
+            android:id="@+id/shadowView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F2FFFFFF"
+            android:visibility="gone"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="29dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/ic_add_white_24dp"
+            android:visibility="invisible"
+            app:backgroundTint="@color/colorPrimary"
+            app:fabSize="normal"
+            android:layout_alignParentEnd="true" />
+
+
+
+
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -108,40 +132,19 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <View
-        android:id="@+id/shadowView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F2FFFFFF"
-        android:visibility="gone"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/adView"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:src="@drawable/ic_add_white_24dp"
-        android:visibility="invisible"
-        app:backgroundTint="@color/colorPrimary"
-        app:fabSize="normal" />
 
     <LinearLayout
         android:id="@+id/eventLayout"
         android:layout_above="@+id/postLayout"
-        android:visibility="gone"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="150dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="28dp"
         >
@@ -159,7 +162,7 @@
             android:id="@+id/eventButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             android:clickable="true"
+            android:clickable="true"
             ads:backgroundTint="@color/blue_500"
             app:elevation="0dp"
             ads:fabSize="mini"
@@ -171,15 +174,16 @@
     <LinearLayout
         android:id="@+id/postLayout"
         android:layout_above="@+id/fab"
-        android:visibility="gone"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="14dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="100dp"
         android:layout_marginEnd="35dp"
-        android:layout_marginRight="35dp"
+        android:layout_marginRight="28dp"
         >
 
         <TextView

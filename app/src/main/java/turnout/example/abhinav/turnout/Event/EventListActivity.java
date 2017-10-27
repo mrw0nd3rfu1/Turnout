@@ -62,9 +62,6 @@ public class EventListActivity extends AppCompatActivity {
 
         final String clgID = getIntent().getExtras().getString("colgId");
 
-        mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-        mAdView.loadAd(adRequest);
 
         databaseEvent = FirebaseDatabase.getInstance().getReference().child(clgID).child("Event");
         mAuth = FirebaseAuth.getInstance();
