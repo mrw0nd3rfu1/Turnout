@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -69,7 +69,7 @@ public class EventTimeline extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private boolean mProcessLike = false;
     private LinearLayoutManager mLayoutManager;
-    private AdView mAdView;
+
     private InterstitialAd interstitial;
     private boolean isUserClickedBackButton = false;
 
@@ -81,25 +81,8 @@ public class EventTimeline extends AppCompatActivity {
 
 
 
-        mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-        mAdView.loadAd(adRequest);
 
-        // Prepare the Interstitial Ad
-     /*   interstitial = new InterstitialAd(MainChatActivity.this);
-        // Insert the Ad Unit ID
-        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
 
-        interstitial.loadAd(adRequest);
-        // Prepare an Interstitial Ad Listener
-        interstitial.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                // Call displayInterstitial() function
-                displayInterstitial();
-            }
-        });
-
-        */
         final String clgID = getIntent().getExtras().getString("colgId");
         final String evntID = getIntent().getExtras().getString("EventId");
         final String evntName = getIntent().getExtras().getString("EventName");
