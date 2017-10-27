@@ -205,7 +205,20 @@ public class HomeFragment extends Fragment {
                 mDatabaseLike.child(post_key).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        viewHolder.likecount.setText( Long.toString(dataSnapshot.getChildrenCount()));
+                        final String likes = Long.toString(dataSnapshot.getChildrenCount());
+                        viewHolder.likecount.setText(likes);
+                        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                mDatabase.child(post_key).child("likeCount").setValue(likes);
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
                     }
 
                     @Override

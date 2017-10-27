@@ -81,7 +81,6 @@ public class AddEventActivity extends AppCompatActivity
     private FirebaseUser mCurrentUser;
 
     int PLACE_PICKER_REQUEST = 2;
-    private EditText locationName;
     private Double latitude;
     private Double longitude;
 
@@ -109,7 +108,6 @@ public class AddEventActivity extends AppCompatActivity
         submit = (Button) findViewById(R.id.submitPost);
         image = (CircleImageView) findViewById(R.id.user_pic);
         location = (Button) findViewById(R.id.post_location);
-        locationName = (EditText) findViewById(R.id.editTextLocation);
 
         eventDate = (TextView) findViewById(R.id.editTextDate);
         postTime = (Button) findViewById(R.id.post_time);
@@ -295,6 +293,7 @@ public class AddEventActivity extends AppCompatActivity
             String address = String.format("Place :", place.getAddress());
              latitude = place.getLatLng().latitude;
              longitude = place.getLatLng().longitude;
+
         }
 
     }

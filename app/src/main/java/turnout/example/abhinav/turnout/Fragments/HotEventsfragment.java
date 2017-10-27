@@ -10,18 +10,18 @@ import android.view.ViewGroup;
 import turnout.example.abhinav.turnout.R;
 
 
-public class Clubfragment extends Fragment {
+public class HotEventsfragment extends Fragment {
 
 
 
-    public Clubfragment() {
+    public HotEventsfragment() {
         // Required empty public constructor
     }
 
 
-    public static Clubfragment newInstance() {
+    public static HotEventsfragment newInstance() {
 
-        return new Clubfragment();
+        return new HotEventsfragment();
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Clubfragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_clubfragment, container, false);
+        return inflater.inflate(R.layout.fragment_hoteventsfragment, container, false);
     }
 
 }
