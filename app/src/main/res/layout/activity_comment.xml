@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+
+        >
+
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:id="@+id/commentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Comment"
+        android:theme="@style/AppTheme.Button"/>
+
+    <EditText
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/commentButton"
+        android:layout_toStartOf="@+id/commentButton"
+        android:hint="Enter Comment " />
+
+    <ListView
+        android:id="@+id/list_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/commentButton"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
+
+
+</RelativeLayout>

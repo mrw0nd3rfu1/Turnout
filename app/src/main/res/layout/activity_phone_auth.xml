@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tech.abhinav.buzzer.Profile.PhoneAuthActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimary"
+        android:title="Verification"
+
+        >
+
+    </android.support.v7.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:hint="Country Code"
+        android:inputType="phone"
+        android:paddingTop="20dp" />
+
+
+    <EditText
+        android:id="@+id/etxtPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:hint="@string/enter_your_phone_number_here"
+        android:inputType="phone"
+        android:paddingTop="20dp" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="requestCode"
+        android:paddingTop="10dp"
+        android:text="@string/send_me_an_sms" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="When you click the above button wait for the verification code and enter the code below"/>
+
+    <EditText
+        android:id="@+id/etxtPhoneCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Type the verification code Here.."
+        android:inputType="number"
+        android:paddingTop="20dp" />
+
+    <Button
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="signIn"
+        android:text="Sign In"/>
+
+</LinearLayout>

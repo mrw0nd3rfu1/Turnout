@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    card_view:cardElevation="16dp"
+    android:clickable="true"
+    android:focusable="true">
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_pic"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:layout_centerInParent="true"
+
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:src="@drawable/ic_neith"
+        app:civ_border_color="@color/colorPrimaryDark"
+        app:civ_border_width="2dp"/>
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:hint="Time stamp"
+        android:paddingLeft="15dp"
+        android:paddingRight="25dp"
+        android:paddingTop="15dp"
+        android:textSize="16dp"
+        android:textStyle="normal|bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        >
+
+
+
+        <TextView
+            android:id="@+id/postUsername"
+            android:layout_width="271dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="65dp"
+            android:inputType="textPersonName"
+            android:paddingBottom="15dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="15dp"
+            android:paddingTop="15dp"
+            android:text="Username"
+            android:textSize="16dp"
+            android:textStyle="normal|bold" />
+
+
+        <TextView
+            android:id="@+id/post_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:paddingRight="15dp"
+            android:text="Post Event Here"
+            android:textSize="16dp"
+            android:textStyle="normal|bold"
+            android:transitionName="myEvent" />
+
+        <TextView
+            android:id="@+id/post_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:autoText="false"
+            android:paddingBottom="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="15dp"
+            android:text="Write Post Here"
+            android:textSize="16dp"
+            android:transitionName="myPost" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/likeButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+
+                />
+
+
+            <ImageButton
+                android:id="@+id/commentButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitXY"
+                android:layout_alignBottom="@+id/likeButton"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/likeButton"
+                android:background="@drawable/ic_comment"
+                android:text="Button" />
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

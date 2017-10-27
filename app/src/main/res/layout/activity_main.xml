@@ -1,18 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.abhinav.turnout.MainActivity">
+    tools:context="com.tech.abhinav.buzzer.Timeline.MainActivity"
+    android:id="@+id/drawer_layout"
+    >
 
-    <TextView
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adView"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="parallax">
+
+                </android.support.v7.widget.Toolbar>
+
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/main_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom" >
+
+                </android.support.design.widget.TabLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_pic"
+                    android:layout_width="65dp"
+                    android:layout_height="69dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="left"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="5dp"
+                    app:civ_border_color="@color/colorPrimaryDark"
+                    app:civ_border_width="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:paddingLeft="75dp"
+                    android:paddingTop="15dp"
+                    android:text="Home"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+
+                <ImageButton
+                    android:id="@+id/messagingAcitivity"
+                    android:layout_width="30dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="5dp"
+                    android:scaleType="fitXY"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/ic_chat"
+                    android:text="Button" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+    <View
+        android:id="@+id/shadowView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2FFFFFF"
+        android:visibility="gone"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_above="@+id/adView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:src="@drawable/ic_add_white_24dp"
+        android:visibility="invisible"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/eventLayout"
+        android:layout_above="@+id/postLayout"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="28dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD EVENT"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="5dp"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:id="@+id/add_event"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/eventButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:clickable="true"
+            ads:backgroundTint="@color/blue_500"
+            app:elevation="0dp"
+            ads:fabSize="mini"
+            ads:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/postLayout"
+        android:layout_above="@+id/fab"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:text="POST"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="5dp"
+            android:id="@+id/add_post"/>
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/postButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:elevation="0dp"
+            ads:fabSize="mini"
+            ads:backgroundTint="@color/blue_500"
+            ads:srcCompat="@android:drawable/ic_menu_edit"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+    </LinearLayout>
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/fab"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id"></com.google.android.gms.ads.AdView>
+
+</RelativeLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_header">
+
+    </android.support.design.widget.NavigationView>
+
+</android.support.v4.widget.DrawerLayout>

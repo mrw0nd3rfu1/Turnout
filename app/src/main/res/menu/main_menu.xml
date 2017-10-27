@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <item android:id="@+id/action_college"
+        android:title="College Selection"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_profile"
+        android:title="Profile"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_messaging"
+        android:title="Messaging"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_users"
+        android:title="All Users"
+        app:showAsAction="never" />
+
+
+    <item android:id="@+id/action_about"
+        android:title="About us"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_logout"
+        android:title="Log Out"
+        app:showAsAction="never" />
+
+</menu>
