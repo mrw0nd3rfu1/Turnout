@@ -131,7 +131,7 @@ public class HomeFragment extends Fragment {
                 return super.onCreateViewHolder(parent, viewType);
             }
             @Override
-            protected void populateViewHolder(HomeViewHolder viewHolder, final Home model, int position) {
+            protected void populateViewHolder(final HomeViewHolder viewHolder, final Home model, int position) {
 
                 final String post_key = getRef(position).getKey();
 
@@ -167,6 +167,17 @@ public class HomeFragment extends Fragment {
                         startActivity(commentIntent);
                     }
                 });
+                mDatabase.child(post_key).child("Comments").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        viewHolder.commentcount.setText(Long.toString(dataSnapshot.getChildrenCount()));
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 viewHolder.mProfileImage.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -191,18 +202,27 @@ public class HomeFragment extends Fragment {
                         startActivity(profileIntent);
                     }
                 });
+                mDatabaseLike.child(post_key).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        viewHolder.likecount.setText( Long.toString(dataSnapshot.getChildrenCount()));
+                    }
 
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 viewHolder.mLikeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mProcessLike = true;
-
-
+                        mProcessLike=true;
                         mDatabaseLike.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (mProcessLike) {
+
 
                                     if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
 
@@ -232,6 +252,7 @@ public class HomeFragment extends Fragment {
 
                                         mProcessLike = false;
                                     }
+
 
                                 }
                             }
@@ -266,6 +287,7 @@ public class HomeFragment extends Fragment {
         CircleImageView mProfileImage;
         TextView mUserName;
         Animation mLike;
+        TextView likecount,commentcount;
 
         DatabaseReference mDatabaseLike;
         FirebaseAuth mAuth;
@@ -273,7 +295,8 @@ public class HomeFragment extends Fragment {
         HomeViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
-
+            likecount=(TextView)mView.findViewById(R.id.likecount);
+            commentcount=(TextView)mView.findViewById(R.id.commentcount);
             mLikeButton = (ImageButton) mView.findViewById(R.id.likeButton);
             mCommentButton = (ImageButton) mView.findViewById(R.id.commentButton);
             mProfileImage = (CircleImageView) mView.findViewById(R.id.user_pic);

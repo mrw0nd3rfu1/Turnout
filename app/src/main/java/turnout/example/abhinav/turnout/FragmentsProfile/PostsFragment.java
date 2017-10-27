@@ -132,7 +132,7 @@ public class PostsFragment extends Fragment {
                 return super.onCreateViewHolder(parent, viewType);
             }
             @Override
-            protected void populateViewHolder(HomeViewHolder viewHolder, Home model, int position) {
+            protected void populateViewHolder(final HomeViewHolder viewHolder, Home model, int position) {
 
                 final String post_key = getRef(position).getKey();
 
@@ -169,6 +169,7 @@ public class PostsFragment extends Fragment {
                     }
                 });
 
+
                 viewHolder.mProfileImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -202,6 +203,7 @@ public class PostsFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (mProcessLike) {
+
 
                                     if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
 

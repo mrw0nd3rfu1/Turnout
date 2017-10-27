@@ -105,15 +105,25 @@
                 android:id="@+id/likeButton"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="15dp"
-                android:scaleType="fitXY"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:scaleType="fitXY"
 
-              />
+                />
 
+            <TextView
+                android:id="@+id/likecount"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:textSize="16sp"
+                android:paddingTop="5dp"
+                android:layout_toRightOf="@id/likeButton"
+                android:textAlignment="center" />
 
             <ImageButton
                 android:id="@+id/commentButton"
@@ -122,11 +132,22 @@
                 android:scaleType="fitXY"
                 android:layout_alignBottom="@+id/likeButton"
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/likeButton"
+                android:layout_toEndOf="@+id/likecount"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/ic_comment"
                 android:text="Button" />
+            <TextView
+                android:id="@+id/commentcount"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:textAlignment="center"
+                android:layout_marginLeft="10dp"
+                android:paddingTop="5dp"
 
-
+                android:layout_alignParentTop="true"
+                android:textSize="16sp"
+                android:layout_toRightOf="@id/commentButton" />
         </RelativeLayout>
 
 
