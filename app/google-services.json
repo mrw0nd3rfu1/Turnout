@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "315824576550",
+    "firebase_url": "https://turnout-5d4f4.firebaseio.com",
+    "project_id": "turnout-5d4f4",
+    "storage_bucket": "turnout-5d4f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315824576550:android:96b59388d4fb8afc",
+        "android_client_info": {
+          "package_name": "com.example.abhinav.turnout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315824576550-fki4583fomp1tqhj4hulpihun494im0o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.abhinav.turnout",
+            "certificate_hash": "ef0209bdced812c76bc7b823d3bc058d16da393d"
+          }
+        },
+        {
+          "client_id": "315824576550-7057hbi10khpcn68qccq81ul1ocfhtbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxoVg84U-96NXBejl_4brqKtKIFKxp5YY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315824576550-7057hbi10khpcn68qccq81ul1ocfhtbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
