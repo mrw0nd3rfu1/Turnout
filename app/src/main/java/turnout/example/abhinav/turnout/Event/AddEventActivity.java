@@ -1,5 +1,6 @@
 package turnout.example.abhinav.turnout.Event;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -11,6 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -48,6 +56,7 @@ public class AddEventActivity extends AppCompatActivity
 {
 
     private static final int GALLERY_REQUEST = 1;
+    private static final String TAG = "";
     private String postId="";int year_x,month_x,day_x;
     static final int DIALOG_ID = 0;
     private TextView eventDate;
@@ -60,6 +69,7 @@ public class AddEventActivity extends AppCompatActivity
     private EditText post;
     private CircleImageView image;
     private Button submit;
+    private Button location;
     private Long sequence;
     private boolean isUserClickedBackButton = false;
     private Uri imageUri = null;
@@ -70,6 +80,10 @@ public class AddEventActivity extends AppCompatActivity
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
 
+    int PLACE_PICKER_REQUEST = 2;
+    private EditText locationName;
+    private Double latitude;
+    private Double longitude;
 
     private ProgressDialog progressDialog;
 
@@ -94,6 +108,8 @@ public class AddEventActivity extends AppCompatActivity
         post = (EditText) findViewById(R.id.postWrite);
         submit = (Button) findViewById(R.id.submitPost);
         image = (CircleImageView) findViewById(R.id.user_pic);
+        location = (Button) findViewById(R.id.post_location);
+        locationName = (EditText) findViewById(R.id.editTextLocation);
 
         eventDate = (TextView) findViewById(R.id.editTextDate);
         postTime = (Button) findViewById(R.id.post_time);
@@ -126,6 +142,23 @@ public class AddEventActivity extends AppCompatActivity
                 progressDialog.setCanceledOnTouchOutside(false);
                 getPostId();
 
+            }
+        });
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+                Intent intent;
+                try {
+                    intent = builder.build(AddEventActivity.this);
+                    startActivityForResult(intent , PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -169,7 +202,6 @@ public class AddEventActivity extends AppCompatActivity
     };
 
 
-
     private void startPosting()
     {
 
@@ -196,6 +228,8 @@ public class AddEventActivity extends AppCompatActivity
                     newpost.child("sortDate").setValue(sortDate);
                     newpost.child("eventID").setValue(newpost.getKey());
                     newpost.child("eventDes").setValue(title_post);
+                    newpost.child("latitude").setValue(latitude);
+                    newpost.child("longitude").setValue(longitude);
                     if(imageUri!=null){
                         filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
@@ -255,6 +289,12 @@ public class AddEventActivity extends AppCompatActivity
         if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
             imageUri=data.getData();
             imageSelect.setImageURI(imageUri);
+        }
+        if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK){
+            Place place =  PlacePicker.getPlace(this , data);
+            String address = String.format("Place :", place.getAddress());
+             latitude = place.getLatLng().latitude;
+             longitude = place.getLatLng().longitude;
         }
 
     }
