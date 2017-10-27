@@ -7,4 +7,5 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_place_api">AIzaSyD-dWFLDEYYHLwTMKw73C6dKoeIMDGGkBk</string>
 </resources>
