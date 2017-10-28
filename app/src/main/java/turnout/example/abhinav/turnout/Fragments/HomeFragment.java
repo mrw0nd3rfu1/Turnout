@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.IntegerRes;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -207,41 +208,6 @@ public class HomeFragment extends Fragment {
                         final String likes = Long.toString(dataSnapshot.getChildrenCount());
                         viewHolder.likecount.setText(likes);
                         mDatabase.child(post_key).child("likeCount").setValue(likes);
-
-//                        mDatabase.addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(DataSnapshot dataSnapshot) {
-//                                mDatabase.child(post_key).child("likeCount").setValue(likes);
-//                               final String event_count = dataSnapshot.child(post_key).child("eventId").getValue().toString();
-//                                mDatabaseEvent.child(event_count).addListenerForSingleValueEvent(new ValueEventListener() {
-//                                    @Override
-//                                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                                        int a = Integer.parseInt(likes);
-//                                        String count;
-//                                        try {
-//                                            count = dataSnapshot.child("likesCount").getValue().toString();
-//                                        }
-//                                        catch (NullPointerException e){
-//                                            count = "0";
-//                                        }
-//                                        int b = Integer.parseInt(count);
-//                                        int c = b - a;
-//                                        mDatabaseEvent.child(event_count).child("likesCount").setValue(Long.toString(c));
-//                                    }
-//
-//                                    @Override
-//                                    public void onCancelled(DatabaseError databaseError) {
-//
-//                                    }
-//                                });
-//
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(DatabaseError databaseError) {
-//
-//                            }
-//                        });
                 }
 
                     @Override
@@ -269,6 +235,20 @@ public class HomeFragment extends Fragment {
 
                                     } else {
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).setValue("Random Value");
+                                        mDatabase.child("Event").child(model.geteventId()).addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                String count = dataSnapshot.child("likesCount").getValue().toString();
+                                                int a = Integer.parseInt(count) - 1;
+                                                mDatabase.child("Event").child(model.geteventId()).child("likesCount").setValue(Long.toString(a));
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        });
+
                                         FirebaseMessaging.getInstance().subscribeToTopic(model.geteventId());
                                         JSONObject message =new JSONObject();
                                         try
