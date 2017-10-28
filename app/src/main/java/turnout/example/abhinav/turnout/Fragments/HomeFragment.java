@@ -41,9 +41,6 @@ import org.json.JSONObject;
 import de.hdodenhof.circleimageview.CircleImageView;
 import turnout.example.abhinav.turnout.Timeline.Asyncpost;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class HomeFragment extends Fragment {
 
     FirebaseRecyclerAdapter<Home, HomeViewHolder> firebaseRecyclerAdapter;
@@ -204,12 +201,12 @@ public class HomeFragment extends Fragment {
                         startActivity(profileIntent);
                     }
                 });
-                mDatabaseLike.child(post_key).addListenerForSingleValueEvent(new ValueEventListener() {
+                mDatabaseLike.child(post_key).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String likes = Long.toString(dataSnapshot.getChildrenCount());
                         viewHolder.likecount.setText(likes);
-                        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                        mDatabase.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 mDatabase.child(post_key).child("likeCount").setValue(likes);
@@ -243,7 +240,7 @@ public class HomeFragment extends Fragment {
 
                             }
                         });
-                    }
+                }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {

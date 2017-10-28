@@ -4,9 +4,6 @@ import android.support.annotation.Keep;
 
 @Keep
 
-/**
- * Created by Abhinav on 23-Jan-17.
- */
 
 
 public class Home {

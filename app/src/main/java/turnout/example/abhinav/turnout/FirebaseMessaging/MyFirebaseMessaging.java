@@ -13,9 +13,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import turnout.example.abhinav.turnout.R;
 import turnout.example.abhinav.turnout.Utility.SplashScreen;
 
-/**
- * Created by Abhinav on 05-Feb-17.
- */
+
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 

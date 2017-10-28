@@ -62,7 +62,7 @@ public class AddEventActivity extends AppCompatActivity
     private TextView eventDate;
     String sortDate="",sortmonth="",sortday="",sortyear="";
     private Button postTime;
-
+    private String address;
     private ImageButton imageSelect;
     private EditText event;
     private EditText eventContact;
@@ -82,6 +82,7 @@ public class AddEventActivity extends AppCompatActivity
     private FirebaseUser mCurrentUser;
 
     int PLACE_PICKER_REQUEST = 2;
+
     private Double latitude;
     private Double longitude;
 
@@ -110,6 +111,7 @@ public class AddEventActivity extends AppCompatActivity
         submit = (Button) findViewById(R.id.submitPost);
         image = (CircleImageView) findViewById(R.id.user_pic);
         location = (Button) findViewById(R.id.post_location);
+
 
         eventDate = (TextView) findViewById(R.id.editTextDate);
         postTime = (Button) findViewById(R.id.post_time);
@@ -268,6 +270,7 @@ public class AddEventActivity extends AppCompatActivity
                     mEventDatabase.child(key).child("likesCount").setValue("0");
                     mEventDatabase.child(key).child("latitude").setValue(latitude);
                     mEventDatabase.child(key).child("longitude").setValue(longitude);
+                    mEventDatabase.child(key).child("address").setValue(address);
                     if(imageUri!=null){
                         filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
@@ -326,10 +329,9 @@ public class AddEventActivity extends AppCompatActivity
         }
         if (requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK){
             Place place =  PlacePicker.getPlace(this , data);
-            String address = String.format("Place :", place.getAddress());
+            address = place.getAddress().toString();
              latitude = place.getLatLng().latitude;
              longitude = place.getLatLng().longitude;
-
         }
 
     }

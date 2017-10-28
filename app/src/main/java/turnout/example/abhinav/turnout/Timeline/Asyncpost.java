@@ -11,9 +11,7 @@ import com.squareup.okhttp.Response;
 
 import org.json.JSONObject;
 
-/**
- * Created by Abhishek on 01-08-2017.
- */
+
 
 public class Asyncpost extends AsyncTask<JSONObject,Void,Void> {
 
@@ -25,7 +23,7 @@ public class Asyncpost extends AsyncTask<JSONObject,Void,Void> {
         RequestBody body = RequestBody.create(JSON, json.toString());
 
 
-       final String fcm="AAAAsu33J24:APA91bHM2kXnx7Cy2HoMCm2X5qrhjcHXsHhmViLIbyOxf2aFGnF0CWreREf3qFViYM8K1PotbwKw2SeouoSh0jBCqYWco5BuSwSDZlp_MhHAB9G7FeojjnaUWf5CNFSrcbTdkd6gTATj";
+       final String fcm="AAAASYicmCY:APA91bHXokrr8OT3o6pqjjNJ_28mthgjnUgdyFEnR7EKZvJifMKE8-mUnBIVRM9AS-yF9iv82COH9FKgp7aD8buj25k9BK6F_KgaVt37ybeWtDNMEAUgvB3fWGkM77w23YQm19sSDJnc";
         Request request=new Request.Builder()
                 .url("https://fcm.googleapis.com/fcm/send")
                 .addHeader("Content-Type","application/json")

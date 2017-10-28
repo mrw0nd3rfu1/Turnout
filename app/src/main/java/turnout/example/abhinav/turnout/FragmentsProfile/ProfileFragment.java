@@ -22,9 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import turnout.example.abhinav.turnout.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class ProfileFragment extends Fragment {
 
     private View mProfile1View;

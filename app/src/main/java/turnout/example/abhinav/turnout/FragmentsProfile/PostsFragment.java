@@ -40,9 +40,7 @@ import turnout.example.abhinav.turnout.Timeline.HomeSingleActivity;
 import turnout.example.abhinav.turnout.Timeline.MainActivity;
 import turnout.example.abhinav.turnout.Utility.Home;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class PostsFragment extends Fragment {
 
     private RecyclerView mHomePage;

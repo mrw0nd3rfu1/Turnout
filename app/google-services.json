@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "315824576550-dhvo5jkqc91snmq0eppsaaon5gbc90q2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.abhinav.turnout",
+            "certificate_hash": "37a508f3a5efbc7a6da18458323ab5a555f8960c"
+          }
+        },
+        {
           "client_id": "315824576550-fki4583fomp1tqhj4hulpihun494im0o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

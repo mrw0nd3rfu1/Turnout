@@ -50,9 +50,6 @@ public class EventTimeline extends AppCompatActivity {
     private static final int HEADER_VIEW = 2;
     Toolbar mtoolbar;
     FloatingActionButton mfab;
-    InterstitialAd mInterstitialAd;
-    String LIST_STATE_KEY = "";
-    int firstVisibleItem, visibleItemCount, totalItemCount;
     FirebaseRecyclerAdapter<Home, HomeViewHolder> firebaseRecyclerAdapter;
     private RecyclerView mHomePage;
     private DatabaseReference mDatabase;
@@ -169,7 +166,7 @@ public class EventTimeline extends AppCompatActivity {
 
 
             @Override
-            protected void populateViewHolder(EventTimeline.HomeViewHolder viewHolder, final Home model, int position) {
+            protected void populateViewHolder(final EventTimeline.HomeViewHolder viewHolder, final Home model, int position) {
 
                 final String post_key = getRef(position).getKey();
 
@@ -228,6 +225,42 @@ public class EventTimeline extends AppCompatActivity {
                         startActivity(profileIntent);
                     }
                 });
+                mDatabaseLike.child(post_key).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        final String likes = Long.toString(dataSnapshot.getChildrenCount());
+                        viewHolder.likecount.setText(likes);
+                        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                mDatabase.child(post_key).child("likeCount").setValue(likes);
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                mDatabase.child(post_key).child("Comments").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        viewHolder.commentcount.setText(Long.toString(dataSnapshot.getChildrenCount()));
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
 
 
                 viewHolder.mLikeButton.setOnClickListener(new View.OnClickListener() {
@@ -296,6 +329,7 @@ public class EventTimeline extends AppCompatActivity {
 
         CircleImageView mProfileImage;
         TextView mUserName;
+        TextView likecount,commentcount;
 
         DatabaseReference mDatabaseLike;
         FirebaseAuth mAuth;
@@ -303,7 +337,8 @@ public class EventTimeline extends AppCompatActivity {
         HomeViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
-
+            likecount=(TextView)mView.findViewById(R.id.likecount);
+            commentcount=(TextView)mView.findViewById(R.id.commentcount);
             mLikeButton = (ImageButton) mView.findViewById(R.id.likeButton);
             mCommentButton = (ImageButton) mView.findViewById(R.id.commentButton);
             mProfileImage = (CircleImageView) mView.findViewById(R.id.user_pic);

@@ -28,9 +28,6 @@ import turnout.example.abhinav.turnout.Event.EventName;
 import turnout.example.abhinav.turnout.Event.EventTimeline;
 import turnout.example.abhinav.turnout.Timeline.MainActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class EventFragment extends Fragment {
 
     private RecyclerView mEventList;

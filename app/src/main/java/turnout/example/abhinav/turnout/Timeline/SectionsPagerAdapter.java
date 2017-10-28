@@ -8,9 +8,7 @@ import turnout.example.abhinav.turnout.Fragments.HotEventsFragment;
 import turnout.example.abhinav.turnout.Fragments.EventFragment;
 import turnout.example.abhinav.turnout.Fragments.HomeFragment;
 
-/**
- * Created by Abhinav on 21-Jun-17.
- */
+
 
 class SectionsPagerAdapter extends FragmentPagerAdapter {
     public SectionsPagerAdapter(FragmentManager fm) {
