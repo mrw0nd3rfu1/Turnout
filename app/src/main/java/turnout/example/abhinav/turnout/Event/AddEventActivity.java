@@ -212,7 +212,7 @@ public class AddEventActivity extends AppCompatActivity
         final String title_contact = eventContact.getText().toString().trim();
         final String title_date = eventDate.getText().toString().trim();
 
-        if (!TextUtils.isEmpty(title_post) ) {
+        if ( imageUri !=null  && !TextUtils.isEmpty(title_post) && !TextUtils.isEmpty(title_event) && !TextUtils.isEmpty(title_date) && !TextUtils.isEmpty(title_contact) )  {
 
 
             final DatabaseReference newpost = mDatabase.push();
@@ -240,6 +240,9 @@ public class AddEventActivity extends AppCompatActivity
                                 final Uri downloadUrl = taskSnapshot.getDownloadUrl();
                                 newpost.child("image").setValue(downloadUrl.toString());
                                 newpost.child("With_image").setValue(1);
+                                mEventDatabase.child(key).child("image").setValue(downloadUrl.toString());
+                                mEventDatabase.child(key).child("With_image").setValue(1);
+
                             }});
                     }
                     else{
@@ -271,16 +274,7 @@ public class AddEventActivity extends AppCompatActivity
                     mEventDatabase.child(key).child("latitude").setValue(latitude);
                     mEventDatabase.child(key).child("longitude").setValue(longitude);
                     mEventDatabase.child(key).child("address").setValue(address);
-                    if(imageUri!=null){
-                        filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                final Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                                mEventDatabase.child(key).child("image").setValue(downloadUrl.toString());
-                                mEventDatabase.child(key).child("With_image").setValue(1);
-                            }});
-                    }
-                    else{
+                    if(imageUri==null){
                         mEventDatabase.child(key).child("With_image").setValue(0);}
                     mEventDatabase.child(key).child("userUid").setValue(mCurrentUser.getUid());
                     mEventDatabase.child(key).child("username").setValue(dataSnapshot.child("name").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {

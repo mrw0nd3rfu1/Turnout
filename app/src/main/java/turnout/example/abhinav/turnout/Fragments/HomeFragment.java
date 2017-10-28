@@ -57,7 +57,8 @@ public class HomeFragment extends Fragment {
     private boolean mProcessLike = false;
     private LinearLayoutManager mLayoutManager;
     public static Context baseContext;
-    String count;
+    private String count;
+    private Long a;
 
     public View mMainView;
 
@@ -225,11 +226,32 @@ public class HomeFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (mProcessLike) {
-                                    final long[] a = new long[1];
+
 
                                     if (dataSnapshot.child(post_key).hasChild(mAuth.getCurrentUser().getUid())) {
 
                                         mDatabaseLike.child(post_key).child(mAuth.getCurrentUser().getUid()).removeValue();
+                                        mDatabaseEvent.child(model.geteventId()).addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                try {
+                                                    count = dataSnapshot.child("likesCount").getValue().toString();
+                                                }
+                                                catch (NullPointerException e)
+                                                {
+                                                    count = "0";
+                                                }
+                                                a = Long.parseLong(count) + 1;
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                        mDatabaseEvent.child(model.geteventId()).child("likesCount").setValue(a);
+
+
                                         FirebaseMessaging.getInstance().unsubscribeFromTopic(model.geteventId());
 
                                         mProcessLike = false;
@@ -246,7 +268,7 @@ public class HomeFragment extends Fragment {
                                                 {
                                                     count = "0";
                                                 }
-                                                a[0] = Long.parseLong(count) - 1;
+                                                a = Long.parseLong(count) - 1;
                                                }
 
                                             @Override
@@ -254,7 +276,7 @@ public class HomeFragment extends Fragment {
 
                                             }
                                         });
-                                        mDatabaseEvent.child(model.geteventId()).child("likesCount").setValue(Long.toString(a[0]));
+                                        mDatabaseEvent.child(model.geteventId()).child("likesCount").setValue(a);
 
 
                                         FirebaseMessaging.getInstance().subscribeToTopic(model.geteventId());
