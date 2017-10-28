@@ -204,7 +204,7 @@ public class HomeFragment extends Fragment {
                         startActivity(profileIntent);
                     }
                 });
-                mDatabaseLike.child(post_key).addValueEventListener(new ValueEventListener() {
+                mDatabaseLike.child(post_key).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String likes = Long.toString(dataSnapshot.getChildrenCount());
@@ -226,7 +226,7 @@ public class HomeFragment extends Fragment {
                                             count = "0";
                                         }
                                         int b = Integer.parseInt(count);
-                                        int c = -(b+a);
+                                        int c = b - a;
                                         mDatabaseEvent.child(event_count).child("likesCount").setValue(Long.toString(c));
                                     }
 
