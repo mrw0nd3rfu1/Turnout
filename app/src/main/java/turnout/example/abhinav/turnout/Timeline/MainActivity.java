@@ -1,6 +1,10 @@
 package turnout.example.abhinav.turnout.Timeline;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,6 +13,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -16,6 +21,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +60,16 @@ import turnout.example.abhinav.turnout.Profile.LoginActivity;
 import turnout.example.abhinav.turnout.Profile.ProfileActivity;
 import turnout.example.abhinav.turnout.Profile.SetupActivity;
 import turnout.example.abhinav.turnout.Utility.AboutActivity;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -139,10 +155,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         collapsingToolbarLayout.setTitle("  ");
         mProfileImage = (CircleImageView) findViewById(R.id.profile_pic);
         mChat = (ImageButton) findViewById(R.id.messagingAcitivity);
-        /*mCollegePic = (ImageView)findViewById(R.id.college_pic);
-        imageView = (ImageButton) findViewById(R.id.imageSelect);
-        mNameUser = (TextView) findViewById(R.id.user_name);
-        userClgPic = (TextView) findViewById(R.id.user_clg_name); */
         mCollege = FirebaseDatabase.getInstance().getReference().child("College").child(clgID);
         mDatabase = FirebaseDatabase.getInstance().getReference().child(clgID).child("Post");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -239,7 +251,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                mDrawerLayout.openDrawer(GravityCompat.START);
             }
         });
-
 
 
         checkUserExist();

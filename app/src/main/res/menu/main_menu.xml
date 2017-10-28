@@ -12,16 +12,7 @@
         android:title="Profile"
         app:showAsAction="never" />
 
-    <item android:id="@+id/action_messaging"
-        android:title="Messaging"
-        app:showAsAction="never" />
-
-    <item android:id="@+id/action_users"
-        android:title="All Users"
-        app:showAsAction="never" />
-
-
-    <item android:id="@+id/action_about"
+      <item android:id="@+id/action_about"
         android:title="About us"
         app:showAsAction="never" />
 

@@ -75,6 +75,7 @@ public class AddEventActivity extends AppCompatActivity
     private Uri imageUri = null;
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
+    private DatabaseReference mEventDatabase;
     private DatabaseReference mDatabaseUsers;
 
     private FirebaseAuth mAuth;
@@ -99,6 +100,7 @@ public class AddEventActivity extends AppCompatActivity
 
         mStorage = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference().child(clgID).child("Event");
+        mEventDatabase = FirebaseDatabase.getInstance().getReference().child("Event");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
 
         imageSelect = (ImageButton) findViewById(R.id.imageSelect);
@@ -218,7 +220,8 @@ public class AddEventActivity extends AppCompatActivity
                 @Override
                 public void onDataChange(final DataSnapshot dataSnapshot) {
 
-
+                    final String key = newpost.getKey();
+                    newpost.child("eventDate").setValue(title_date);
                     newpost.child("eventDate").setValue(title_date);
                     newpost.child("eventName").setValue(title_event);
                     newpost.child("eventContact").setValue(title_contact);
@@ -253,6 +256,43 @@ public class AddEventActivity extends AppCompatActivity
                         }
                     });
 
+                    //event
+                    mEventDatabase.child(key).child("eventDate").setValue(title_date);
+                    mEventDatabase.child(key).child("eventDate").setValue(title_date);
+                    mEventDatabase.child(key).child("eventName").setValue(title_event);
+                    mEventDatabase.child(key).child("eventContact").setValue(title_contact);
+                    FirebaseMessaging.getInstance().subscribeToTopic(newpost.getKey());
+                    mEventDatabase.child(key).child("sortDate").setValue(sortDate);
+                    mEventDatabase.child(key).child("eventID").setValue(newpost.getKey());
+                    mEventDatabase.child(key).child("eventDes").setValue(title_post);
+                    mEventDatabase.child(key).child("likesCount").setValue("0");
+                    mEventDatabase.child(key).child("latitude").setValue(latitude);
+                    mEventDatabase.child(key).child("longitude").setValue(longitude);
+                    if(imageUri!=null){
+                        filePath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                final Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                mEventDatabase.child(key).child("image").setValue(downloadUrl.toString());
+                                mEventDatabase.child(key).child("With_image").setValue(1);
+                            }});
+                    }
+                    else{
+                        mEventDatabase.child(key).child("With_image").setValue(0);}
+                    mEventDatabase.child(key).child("userUid").setValue(mCurrentUser.getUid());
+                    mEventDatabase.child(key).child("username").setValue(dataSnapshot.child("name").getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            final String clgID = getIntent().getExtras().getString("colgId");
+                            if (task.isSuccessful()) {
+                                progressDialog.dismiss();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                intent.putExtra("colgId", clgID);
+                                startActivity(intent);
+                            }
+                        }
+                    });
+
                 }
 
                 @Override
@@ -260,10 +300,6 @@ public class AddEventActivity extends AppCompatActivity
 
                 }
             });
-
-
-
-
         }
         else{
             Toast.makeText(AddEventActivity.this,"Enter All of the above data to Submit", Toast.LENGTH_LONG).show();

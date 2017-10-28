@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import turnout.example.abhinav.turnout.Fragments.HotEventsfragment;
+import turnout.example.abhinav.turnout.Fragments.HotEventsFragment;
 import turnout.example.abhinav.turnout.Fragments.EventFragment;
 import turnout.example.abhinav.turnout.Fragments.HomeFragment;
 
@@ -25,7 +25,7 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new HomeFragment();
             case 1 :
                 return new EventFragment();
-            case 2: return HotEventsfragment.newInstance();
+            case 2: return new HotEventsFragment();
            default:
                 return null;
         }

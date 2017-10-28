@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
     FirebaseRecyclerAdapter<Home, HomeViewHolder> firebaseRecyclerAdapter;
     private RecyclerView mHomePage;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseEvent;
     private DatabaseReference mDatabaseUsers;
     private DatabaseReference mCollege;
     private DatabaseReference mDatabaseLike;
@@ -71,6 +72,7 @@ public class HomeFragment extends Fragment {
         mMainView = inflater.inflate(R.layout.fragment_home , container ,false);
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child(MainActivity.clgID).child("Post");
+        mDatabaseEvent = FirebaseDatabase.getInstance().getReference().child("Event");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseLike = FirebaseDatabase.getInstance().getReference().child("Like");
         orderData = mDatabase.orderByChild("post_id").limitToFirst(30);
@@ -211,6 +213,28 @@ public class HomeFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 mDatabase.child(post_key).child("likeCount").setValue(likes);
+                               final String event_count = dataSnapshot.child(post_key).child("eventId").getValue().toString();
+                                mDatabaseEvent.child(event_count).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        int a = Integer.parseInt(likes);
+                                        String count;
+                                        try {
+                                            count = dataSnapshot.child("likesCount").getValue().toString();
+                                        }
+                                        catch (NullPointerException e){
+                                            count = "0";
+                                        }
+                                        int b = Integer.parseInt(count);
+                                        int c = -(b+a);
+                                        mDatabaseEvent.child(event_count).child("likesCount").setValue(Long.toString(c));
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
 
                             }
 

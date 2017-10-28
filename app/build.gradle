@@ -40,6 +40,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:11.0.0'
     compile 'com.google.android.gms:play-services:11.0.0'
     compile 'com.firebaseui:firebase-ui-database:0.4.0'
+    compile 'com.google.android.gms:play-services-location:11.0.0'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
     compile 'com.ms-square:expandableTextView:0.1.4'
