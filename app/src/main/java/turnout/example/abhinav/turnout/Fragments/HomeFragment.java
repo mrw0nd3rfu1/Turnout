@@ -241,7 +241,7 @@ public class HomeFragment extends Fragment {
                                                 {
                                                     count = "0";
                                                 }
-                                                a = Long.parseLong(count) + 1;
+                                                a = Long.parseLong(count) - 1;
                                             }
 
                                             @Override
@@ -268,7 +268,7 @@ public class HomeFragment extends Fragment {
                                                 {
                                                     count = "0";
                                                 }
-                                                a = Long.parseLong(count) - 1;
+                                                a = Long.parseLong(count) + 1;
                                                }
 
                                             @Override

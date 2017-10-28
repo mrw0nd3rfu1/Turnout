@@ -270,7 +270,6 @@ public class AddEventActivity extends AppCompatActivity
                     mEventDatabase.child(key).child("sortDate").setValue(sortDate);
                     mEventDatabase.child(key).child("eventID").setValue(newpost.getKey());
                     mEventDatabase.child(key).child("eventDes").setValue(title_post);
-                    mEventDatabase.child(key).child("likesCount").setValue("0");
                     mEventDatabase.child(key).child("latitude").setValue(latitude);
                     mEventDatabase.child(key).child("longitude").setValue(longitude);
                     mEventDatabase.child(key).child("address").setValue(address);
