@@ -484,16 +484,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
 
-
-            if (item.getItemId() == R.id.action_about) {
-                final String clgID = getIntent().getExtras().getString("colgId");
-
-                Intent profileIntent = new Intent(MainActivity.this, AboutActivity.class);
-                profileIntent.putExtra("colgId", clgID);
-                profileIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(profileIntent);
-
-            }
         }
         return super.onOptionsItemSelected(item);
     }
