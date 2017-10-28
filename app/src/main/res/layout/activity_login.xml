@@ -4,8 +4,7 @@
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/animation_list"
-    tools:context="com.tech.abhinav.buzzer.Profile.LoginActivity">
+    android:background="@drawable/animation_list">
 
 
 
@@ -78,12 +77,11 @@
 
     <ImageView
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/loginEmailfield"
-        android:layout_alignLeft="@+id/registerButton"
+        android:layout_height="160dp"
+        android:src="@drawable/ic_turnout"
+        android:layout_above="@+id/loginEmailfield"
         android:layout_alignStart="@+id/registerButton"
-        android:layout_marginBottom="36dp"
-        android:src="@drawable/ic_logo" />
+        android:layout_marginBottom="10dp" />
 
 
 </RelativeLayout>

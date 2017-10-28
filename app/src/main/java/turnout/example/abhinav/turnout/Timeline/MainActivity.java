@@ -49,6 +49,7 @@ import turnout.example.abhinav.turnout.College.CollegePhotoSelector;
 import turnout.example.abhinav.turnout.Event.AddEventActivity;
 import turnout.example.abhinav.turnout.Event.EventListActivity;
 import android.Manifest;
+
 import turnout.example.abhinav.turnout.Profile.LoginActivity;
 import turnout.example.abhinav.turnout.Profile.ProfileActivity;
 import turnout.example.abhinav.turnout.Profile.SetupActivity;
@@ -185,6 +186,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+//        mChat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent neabyLoc = new Intent(MainActivity.this , NearbyEvents.class);
+//                neabyLoc.putExtra("colgId",clgID);
+//                neabyLoc.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(neabyLoc);
+//            }
+//        });
 
         mfab.setOnClickListener(new View.OnClickListener() {
             @Override

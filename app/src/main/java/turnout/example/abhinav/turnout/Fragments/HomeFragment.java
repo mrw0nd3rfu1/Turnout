@@ -206,40 +206,42 @@ public class HomeFragment extends Fragment {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         final String likes = Long.toString(dataSnapshot.getChildrenCount());
                         viewHolder.likecount.setText(likes);
-                        mDatabase.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                mDatabase.child(post_key).child("likeCount").setValue(likes);
-                               final String event_count = dataSnapshot.child(post_key).child("eventId").getValue().toString();
-                                mDatabaseEvent.child(event_count).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        int a = Integer.parseInt(likes);
-                                        String count;
-                                        try {
-                                            count = dataSnapshot.child("likesCount").getValue().toString();
-                                        }
-                                        catch (NullPointerException e){
-                                            count = "0";
-                                        }
-                                        int b = Integer.parseInt(count);
-                                        int c = b - a;
-                                        mDatabaseEvent.child(event_count).child("likesCount").setValue(Long.toString(c));
-                                    }
+                        mDatabase.child(post_key).child("likeCount").setValue(likes);
 
-                                    @Override
-                                    public void onCancelled(DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
+//                        mDatabase.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                mDatabase.child(post_key).child("likeCount").setValue(likes);
+//                               final String event_count = dataSnapshot.child(post_key).child("eventId").getValue().toString();
+//                                mDatabaseEvent.child(event_count).addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                                        int a = Integer.parseInt(likes);
+//                                        String count;
+//                                        try {
+//                                            count = dataSnapshot.child("likesCount").getValue().toString();
+//                                        }
+//                                        catch (NullPointerException e){
+//                                            count = "0";
+//                                        }
+//                                        int b = Integer.parseInt(count);
+//                                        int c = b - a;
+//                                        mDatabaseEvent.child(event_count).child("likesCount").setValue(Long.toString(c));
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(DatabaseError databaseError) {
+//
+//                                    }
+//                                });
+//
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//
+//                            }
+//                        });
                 }
 
                     @Override
