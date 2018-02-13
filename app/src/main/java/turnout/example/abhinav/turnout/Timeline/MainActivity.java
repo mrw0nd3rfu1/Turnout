@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -57,6 +60,7 @@ import turnout.example.abhinav.turnout.R;
 import turnout.example.abhinav.turnout.Utility.AboutActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import turnout.example.abhinav.turnout.Utility.DatabaseHelper;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -96,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LocationManager locationManager;
     private static final int REQUEST_LOCATION = 1;
     String lattitude,longitude;
+    DatabaseHelper myDb;
 
 
     @Override
@@ -103,7 +108,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        clgID = getIntent().getExtras().getString("colgId");
+     //   clgID = getIntent().getExtras().getString("colgId");
+        myDb = new DatabaseHelper(this);
+
+        Cursor res = myDb.getAllData();
+        if (res.getCount()!= 0){
+            if (res.moveToFirst()) {
+                clgID = res.getString(2);
+                /*mNameText.setText(res.getString(1));
+                mPhoneText.setText(res.getString(2));
+                mMailText.setText(res.getString(3));
+                byte[] profileImage = res.getBlob(4);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(profileImage, 0, profileImage.length);
+                mProfileImage.setImageBitmap(bitmap); */
+            }
+        }
 
 
         ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);

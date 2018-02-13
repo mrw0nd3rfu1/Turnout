@@ -2,6 +2,9 @@ package turnout.example.abhinav.turnout.Profile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,11 +24,17 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import turnout.example.abhinav.turnout.College.CollegeListActivity2;
 import turnout.example.abhinav.turnout.R;
 import turnout.example.abhinav.turnout.Timeline.MainActivity;
+import turnout.example.abhinav.turnout.Utility.DatabaseHelper;
+
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.ByteArrayOutputStream;
 
 public class SetupActivity extends AppCompatActivity{
 
@@ -44,6 +53,8 @@ public class SetupActivity extends AppCompatActivity{
     private Uri mImageUri = null;
     private ProgressDialog mProgress;
 
+    DatabaseHelper myDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +66,7 @@ public class SetupActivity extends AppCompatActivity{
         mStorageImage = FirebaseStorage.getInstance().getReference().child("Profile_images");
 
         mProgress = new ProgressDialog(this);
+        myDb = new DatabaseHelper(this);
 
         mSetupImageButton = (ImageButton) findViewById(R.id.profileImageButton);
         mNameField = (EditText) findViewById(R.id.setupNamefield);
@@ -130,6 +142,25 @@ public class SetupActivity extends AppCompatActivity{
                     if(getIntent().hasExtra("phoneNo"))
                         mDatabaseUsers.child(user_ID).child("phoneNo").setValue(getIntent().getStringExtra("phoneNo"));
 
+                    //........................
+                    Cursor res = myDb.getAllData();
+                    if (res.getCount() == 0){
+                        boolean isInserted = myDb.insertData(name, clgId, college_name, imageViewToByte(mSetupImageButton));
+                        if (isInserted == true)
+                            Toast.makeText(SetupActivity.this,"Profile Updated",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(SetupActivity.this,"Error",Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        boolean isUpdate = myDb.updateData("1",name, clgId, college_name, imageViewToByte(mSetupImageButton));
+                        if (isUpdate == true)
+                            Toast.makeText(SetupActivity.this,"Profile Updated",Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(SetupActivity.this,"Error",Toast.LENGTH_LONG).show();
+
+                    }
+                    //..............................
+
                     Intent mainIntent = new Intent(SetupActivity.this, MainActivity.class);
                     mainIntent.putExtra("colgId",clgId);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -143,6 +174,15 @@ public class SetupActivity extends AppCompatActivity{
         }
 
     }
+
+    public static byte[] imageViewToByte(ImageButton image) {
+        Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
